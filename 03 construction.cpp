@@ -14,8 +14,9 @@ int CST(int ss, int se, int si, int arr[], int tree[])
 	int mid = (ss + se) / 2;
 
 	tree[si] = CST(ss, mid, 2*si+1, arr, tree) + CST(mid + 1, se, 2*si+2, arr, tree);  //for [ss,mid] -> 2*si+1, and [mid+1,se] -> 2*si+2
-
-	return tree[si];
+	//why are we adding both? -> since in this example, we are considering sum in the range [ss,se]
+	
+	return tree[si]; //return tree[si] -> since in this example, we are considering sum in the range [ss,se]
 }	
 	
 int main() {
