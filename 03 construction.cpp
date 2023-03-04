@@ -16,7 +16,7 @@ int CST(int ss, int se, int si, int arr[], int tree[])
 	tree[si] = CST(ss, mid, 2*si+1, arr, tree) + CST(mid + 1, se, 2*si+2, arr, tree);  //for [ss,mid] -> 2*si+1, and [mid+1,se] -> 2*si+2
 	//why are we adding both? -> since in this example, we are considering sum in the range [ss,se]
 	
-	//also notice, since we are assigning value to tree[si], thus some nodes may NOT be assigned (dummy nodes)
+	//also notice, since we are assigning value to tree[si], thus some nodes may NOT be assigned a value(dummy nodes)
 	
 	return tree[si]; //return tree[si] -> since in this example, we are considering sum in the range [ss,se]
 }	
