@@ -10,7 +10,7 @@ Preprocessing space O(N)
   
   
 Example:
-given an array-> do 2 operations-> 1. find sum on range on index, and 2. update value at an index
+given an array-> do 2 types of operations-> 1. find sum on range on index, and 2. update value at an index
 
 Naive sol:
 find sum in O(N)
