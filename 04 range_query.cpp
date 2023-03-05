@@ -29,7 +29,7 @@ int getSumRec(int qs, int qe, int ss, int se, int si, int tree[])
 
 	int mid = (ss + se) / 2;
 
-	return getSumRec(qs, qe, ss, mid, 2*si+1, tree) + getSumRec(qs, qe, mid + 1, se, 2*si+2, tree);  //[ss,mid] is left half, and [mid+1, se] is right half
+	return getSumRec(qs, qe, ss, mid, 2*si+1, tree) + getSumRec(qs, qe, mid + 1, se, 2*si+2, tree);  //[ss,mid] is left half (si -> 2*si+1), and [mid+1, se] is right half(si -> 2*si+2)
 }
 	
 
@@ -39,7 +39,7 @@ int main() {
     int tree[4 * n];
     CST(0, n - 1, 0, arr, tree);
      
-    cout << getSumRec(0, 2, 0, 3, 0, tree); 
+    cout << getSumRec(0, 2, 0, 3, 0, tree);   //always start with [ss,se] as [0,n-1]
 		
 	return 0;
 }
