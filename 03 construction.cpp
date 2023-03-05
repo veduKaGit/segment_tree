@@ -1,4 +1,4 @@
-//IMP NOTE: say given array has size = N, then the seg. tree array will have size = 4*N !!!!
+//IMP NOTE: say given array has size = N, then the seg. tree array will have size <= 4*N !!!!
 //actually 4N se kam rahega-> 4N is upper bound
 
 
