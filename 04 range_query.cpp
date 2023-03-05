@@ -1,5 +1,7 @@
 //in this file, we see how to find the sum, provided a range
 
+//time complexity: O(log N)....discussed in the intro part also
+
 
 int CST(int ss, int se, int si, int arr[], int tree[])  //normal seg tree construction
 {
