@@ -44,10 +44,10 @@ public:
 class RangeFreqQuery {
 public:
     int n;   //size of arr
-    vector<map<int, int>>seg;  //size 4*n -> each element has a map -> map stores freq of elements in range of indices [l,r]
+    vector<map<int, int>>seg;    //size 4*n -> each element has a map -> map stores freq of elements in range of indices [l,r]
 
     void construct(int l, int r, int i, vector<int>&arr){
-        if(l==r){             //base case
+        if(l==r){                    //base case
             map<int,int>m;
             m[arr[l]]++;
             seg[i] = m;
@@ -56,13 +56,13 @@ public:
 
         int mid = (l+r)/2;
 
-        construct(l, mid, 2*i+1, arr);   //left half
-        construct(mid+1, r, 2*i+2, arr);  //right half
+        construct(l, mid, 2*i+1, arr);       //left half
+        construct(mid+1, r, 2*i+2, arr);     //right half
 
         map<int,int>m;
         m = seg[2*i+1];
 
-        for(auto x: seg[2*i+2]){  //taking union of left and right half
+        for(auto x: seg[2*i+2]){             //taking union of left and right half
             if(m.find(x.first) == m.end())
                 m[x.first] = x.second;
             else
@@ -72,11 +72,12 @@ public:
         seg[i] = m;  //assign the union of left & right half to seg[i]
     }
 
-    int freq(int l, int r, int i, int ql, int qr, int val){
-        if(l>qr || r<ql)   //base case
+    int freq(int l, int r, int i, int ql, int qr, int val)    //[l,r]-> indices under consideration , i-> current index of segment tree, [ql, qr]-> range fo indices for this particular query
+    {    
+        if(l>qr || r<ql)            //base case
             return 0;
         
-        if(l>=ql && r<=qr)  //base case
+        if(l>=ql && r<=qr)          //base case
             return seg[i][val];
 
         int mid = (l+r)/2;
@@ -87,14 +88,14 @@ public:
         return left_half+right_half;
     }
 
-    RangeFreqQuery(vector<int>& arr) {
+    RangeFreqQuery(vector<int>& arr) {          //constructor function of this class
         n = arr.size();
         map<int,int>m;
         seg = vector<map<int,int>>(4*n+1, m);   //initialize
         construct(0, n-1, 0, arr);
     }
     
-    int query(int left, int right, int value) {
+    int query(int left, int right, int value) {       //[left, right] range of indices -> finds freq of 'value'
         return freq(0, n-1, 0, left, right, value);
     }
 };
