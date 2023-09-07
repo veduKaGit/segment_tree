@@ -30,7 +30,7 @@ void update(int i, int l, int r, int ind){
     if(ind<l || ind>r || l>r)
         return;
     if(l==r){
-        tree[i]++;   //increment tree[i] => tree[i] is freq of number 'ind' in range l to r
+        tree[i]++;   //increment tree[i] => tree[i] is count of numbers present in range l to r
         return;
     }
 
