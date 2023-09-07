@@ -47,7 +47,7 @@ int k_th(int i ,int l, int r, int k){
 
     int mid = l+(r-l)/2;
 
-    if(tree[2*i+1] >= k)  //if MORE than k numbers are present in left half
+    if(tree[2*i+1] >= k)  //if MORE (or equal) than k numbers are present in left half
         return k_th(2*i+1, l, mid, k) ;
     else  //if LESS than k numbers are present in left half
         return k_th(2*i+2, mid+1, r, k-tree[2*i+1]);
