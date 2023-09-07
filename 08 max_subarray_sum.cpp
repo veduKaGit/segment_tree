@@ -6,13 +6,13 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-vector<vector<long long int>>tree(400010, vector<long long int>(4, 0)); //tree[i] => {tot_sum, max_sum, max_prefix_left_sum, max_prefix_right_sum}
+vector<vector<long long int>>tree(400010, vector<long long int>(4, 0));  //tree[i] => {tot_sum, max_sum, max_prefix_left_sum, max_prefix_right_sum}
 
 void merge(int i){
     tree[i][0] = tree[2*i+1][0] + tree[2*i+2][0]; //tot_sum
-    tree[i][1] = max({tree[2*i+1][1], tree[2*i+2][1], tree[2*i+1][3]+tree[2*i+2][2]}); //max_sum
-    tree[i][2] = max(tree[2*i+1][2], tree[2*i+1][0]+tree[2*i+2][2]);  //max_prefix_left_sum
-    tree[i][3] = max(tree[2*i+2][3], tree[2*i+2][0]+tree[2*i+1][3]);   //max_prefix_right_sum
+    tree[i][1] = max({tree[2*i+1][1], tree[2*i+2][1], tree[2*i+1][3]+tree[2*i+2][2]}); //max_sum = max({ max_of_left_half, max_of_right_half, max_of_suffix_of_left + max_of_prefix_of_right })
+    tree[i][2] = max(tree[2*i+1][2], tree[2*i+1][0]+tree[2*i+2][2]);  //max_prefix_left_sum = max( max_of_prefix_of_left, total_left_sum + max_of_prefix_of_right )
+    tree[i][3] = max(tree[2*i+2][3], tree[2*i+2][0]+tree[2*i+1][3]);   //max_prefix_right_sum = 
 }
 
 void construct(int i, int l, int r, vector<long long int>&arr){
