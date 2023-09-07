@@ -10,11 +10,11 @@ using namespace std;
 
 vector<int>tree(400010);
 
-void construct(int i, int l, int r, vector<int>&arr){  //tree[i] contains the count of numbers present in range l to r
+void construct(int i, int l, int r, vector<int>&arr){   //tree[i] contains the count of numbers present in range l to r
     if(l>r) 
         return;
     if(l==r){
-        tree[i] = arr[l];  //arr[l] is either 1 or 0
+        tree[i] = arr[l];   //arr[l] is either 1 or 0
         return;
     }
 
@@ -41,22 +41,17 @@ void update(int i, int l, int r, int ind, vector<int>&arr){
     tree[i] = tree[2*i+1] + tree[2*i+2];
 }
 
-int k_th(int node ,int kth, int st, int sp){
-        if(st == sp) 
-            return st;
+int k_th(int i ,int l, int r, int k){
+    if(l == r) 
+        return l;
 
-        int lft = (node << 1) +1;
-        int rght = lft + 1;
-        int mid = st + ((sp-st)>>1) ;
+    int mid = l+(r-l)/2;
 
-        if(tree[lft] >= kth){
-            return k_th(lft,kth,st,mid) ;
-        }
-        else{
-            return k_th(rght,kth-tree[lft],mid+1,sp) ;
-        }
-
-    }
+    if(tree[2*i+1] >= k)
+        return k_th(2*i+1, l, mid, k) ;
+    else
+        return k_th(2*i+2, mid+1, r, k-tree[2*i+1]);
+}
 
 int main(){
     int n, m;
@@ -84,7 +79,7 @@ int main(){
         if(x==1){  //update
             update(0, 0, n-1, y, arr);
         }else{   //find kth one
-            cout<< k_th(0,y+1, 0, n-1) <<endl;
+            cout<< k_th(0, 0, n-1, y+1) <<endl;
         }
    
     }
