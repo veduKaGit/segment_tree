@@ -24,7 +24,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-vector<int>tree(400040);  //tree[i] = frequency of number 'i' in range l to r
+vector<int>tree(400040);  
 
 void update(int i, int l, int r, int ind){   
     if(ind<l || ind>r || l>r)
