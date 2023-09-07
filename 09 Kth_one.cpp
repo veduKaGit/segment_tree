@@ -1,13 +1,20 @@
+// 2 types of operations:
+// -> 1 i : change the element with index i to the opposite (basically toggle if no. is present or not)
+// -> 2 k : find the k-th one (ones are numbered from 0, it is guaranteed that there are enough ones in the array).
+
+// For each operation of type (2 k), print the index of the corresponding one (all indices in this problem are from 0).
+
+
 #include<bits/stdc++.h>
 using namespace std;
 
 vector<int>tree(400010);
 
-void construct(int i, int l, int r, vector<int>&arr){
+void construct(int i, int l, int r, vector<int>&arr){  //tree[i] contains the count of numbers present in range l to r
     if(l>r) 
         return;
     if(l==r){
-        tree[i] = arr[l];
+        tree[i] = arr[l];  //arr[l] is either 1 or 0
         return;
     }
 
@@ -19,11 +26,10 @@ void construct(int i, int l, int r, vector<int>&arr){
 }
 
 void update(int i, int l, int r, int ind, vector<int>&arr){
-
     if(ind<l || ind>r)
         return;
     if(l==r){
-        tree[i] = 1 - tree[i];
+        tree[i] = 1 - tree[i]; //toggle
         arr[l] = 1 - arr[l]; //toggle
         return;
     }
@@ -36,8 +42,8 @@ void update(int i, int l, int r, int ind, vector<int>&arr){
 }
 
 int k_th(int node ,int kth, int st, int sp){
-
-        if(st == sp) return st ;
+        if(st == sp) 
+            return st;
 
         int lft = (node << 1) +1;
         int rght = lft + 1;
@@ -77,7 +83,6 @@ int main(){
         int x = q[i][0], y = q[i][1];
         if(x==1){  //update
             update(0, 0, n-1, y, arr);
-
         }else{   //find kth one
             cout<< k_th(0,y+1, 0, n-1) <<endl;
         }
